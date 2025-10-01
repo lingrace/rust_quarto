@@ -4,15 +4,15 @@ use crate::piece::Piece as Piece;
 // LineData stores metadata about the current status of a winnable line.
 pub struct LineData {
     cumulative_bit_and: u8, // defaults to 15, or 1111 in bits
-    cumulative_bit_or: u8, // defaults ot 0, or 0000 in bits
+    cumulative_bit_or: u8, // defaults to 0, or 0000 in bits
     number_of_pieces: i32,
 }
 
 impl Default for LineData {
     fn default() -> Self {
         Self {
-            cumulative_bit_and: 15, // 1111 in bits
-            cumulative_bit_or: 0, 
+            cumulative_bit_and: 0b1111, // 15 in decimal
+            cumulative_bit_or: 0b0000, // 0 in decimal
             number_of_pieces: 0,
         }
     }
