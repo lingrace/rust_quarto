@@ -10,8 +10,8 @@ struct Player {
 }
 
 impl Player {
-    pub fn new(name: String) -> Self {
-        Self {name: name}
+    pub fn new(name: &str) -> Self {
+        Self {name: name.to_string()}
     }
 }
 
@@ -40,11 +40,11 @@ pub struct GameState {
 
 impl GameState {
     // init
-    pub fn new(player_1_name: String, player_2_name: String) -> Self {
+    pub fn new() -> Self {
         Self {
             board: std::array::from_fn(|_| std::array::from_fn(|_| None)),
             used_pieces_bit_array: 0, // all 16 pieces available
-            players: [Player::new(player_1_name), Player::new(player_2_name)],
+            players: [Player::new("player_1"), Player::new("player_2")],
             game_phase: GamePhase::GameInit,
             win_tracker_rows: std::array::from_fn(|_| LineData::default()),
             win_tracker_columns: std::array::from_fn(|_| LineData::default()),
@@ -57,3 +57,23 @@ impl GameState {
     // check win status
     // increment phase
 }
+
+// // instructions
+// // enter to move forwards
+
+// // psuedo code for game loop
+// // We are designing a game loop that can take input commands and increments the game phase
+// // Commands are likely 'help', 'display board', 'display available pieces', 'display game phase', 'debug', 'quit', 'restart'
+// // this will be an input based loop
+// // Each time there is input, first we check if one of the commands has been triggered
+// // then we match case based on phase, and type check
+// pub fn run(){
+//     loop {
+//         // handle the commands
+//         // match the game phase -> handle accordingly
+
+//         // as an example, if you are in the selecting piece phase, and there is no currently selected piece, prompt for a piece selection
+//         // if there is an input, type check it for piece selection. if yes, update the state and move the state to piece placement. the user then enters to trigger the loop again
+        
+//     }
+// }

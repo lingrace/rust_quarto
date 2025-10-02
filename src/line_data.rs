@@ -19,6 +19,11 @@ impl Default for LineData {
 }
 
 impl LineData {
+    pub fn new() -> Self {
+        LineData::default()
+    }
+
+
     pub fn add_piece(&mut self, piece: Piece){
         self.number_of_pieces += 1;
         self.cumulative_bit_and &= piece.trait_bit_array(); 
@@ -28,7 +33,7 @@ impl LineData {
         // If the cumulative bit and is not 0, then there is a bit position where all the pieces have a 1
         // If the cumulative bit or is not 15, then there is a bit position where all the pieces have a 0
         return self.number_of_pieces == 4 && (self.cumulative_bit_and != 0 || self.cumulative_bit_or != 15)
-        // TODO turn hardcoded nums into constants
+        // TODO: turn hardcoded nums into constants
     }
 
 }
